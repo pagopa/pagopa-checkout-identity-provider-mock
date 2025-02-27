@@ -142,6 +142,8 @@ MOCK_PRIVATE_KEY=private key
 
 ## Testing the Endpoints
 
+Note: All API described below can also be tested using the Postman collection available in the `postman_collection_folder`.
+
 ### 1. Test `/initMock`
 
 To initialize the mock identity provider, send a `POST` request to `http://localhost:8090/initMock` with the following JSON body:
