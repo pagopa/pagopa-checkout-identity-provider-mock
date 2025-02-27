@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import { postOidcToken } from "./handlers/oidc-token-handler";
 import { get } from "http";
 import { getOidcKeys } from "./handlers/oidc-keys-handler";
+import { initMock } from "./handlers/initMockHandler";
+
 
  
 export const newExpressApp: () => Promise<Express.Application> = async () => {
@@ -17,8 +19,9 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
         setTimeout(next, 1000);
     });
 
+    app.post("/initMock", initMock);
     app.post("/oidc/token", postOidcToken);
     app.get("/oidc/keys", getOidcKeys);
 
-    return app;
+  return app;
 };
