@@ -99,13 +99,13 @@ cd pagopa-checkout-identity-provider-mock
 Using Yarn:
 
 ```bash
-yarn install
+yarn install && yarn build
 ```
 
 Or using npm:
 
 ```bash
-npm install
+npm install && npm run build
 ```
 
 ### 3. Run the Server
