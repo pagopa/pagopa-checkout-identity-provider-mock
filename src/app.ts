@@ -20,8 +20,7 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
     res.send("Hello World");
   });
 
-  // Add the new APIPOST /initMock endpoint
-  app.post("/initMock",initMock);
+  app.post("/initMock", initMock);
 
   return app;
 };

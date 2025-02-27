@@ -1,5 +1,4 @@
-import crypto from "crypto";
-const JWK = require('jose');
+const jose = require('jose');
 
 const privateKeyPem = `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgHFM4vBEVmXQYiTZaZguzZC6f4UnB1fyCp6bIwRRZk+6O4UxMSKM
@@ -30,37 +29,48 @@ const RSA_PUBLIC_KEY_MOCK = process.env.MOCK_PUBLIC_KEY || publicKeyPem;
 const RSA_PRIVATE_KEY_MOCK = process.env.MOCK_PRIVATE_KEY || privateKeyPem;
 
 
-// Convert PEM keys into JWK format
-const privateKeyJwk = JWK.asKey(RSA_PUBLIC_KEY_MOCK, 'pem');
-const publicKeyJwk = JWK.asKey(RSA_PRIVATE_KEY_MOCK, 'pem');
-
-// Extract the public key components
-const publicKey = publicKeyJwk.toJSON(true); // Get the public key components
-
-// Construct the payload object
-const jwkPayload = {
-  keys: [
-    {
-      kty: "RSA",
-      kid: "d47b2419-c8b2-4e89-8b99-2ad11756cf7f", 
-      use: "sig",
-      alg: "RS256",
-      n: publicKey.n,
-      e: publicKey.e, 
-    }
-  ]
-};
-
 export const getJwkPayload = ()=>{
+
+    // Extract the public key components
+    const publicKey = jose.exportJWK(RSA_PUBLIC_KEY_MOCK);
+
+    // Construct the payload object
+    const jwkPayload = {
+        keys: [
+        {
+            kty: "RSA",
+            kid: "d47b2419-c8b2-4e89-8b99-2ad11756cf72", 
+            use: "sig",
+            alg: "RS256",
+            n: publicKey.n,
+            e: publicKey.e, 
+        }
+        ]
+    };
+
     return jwkPayload;
 }
 
 // private key getter
 export const GetPrivateKey = ()=>{
-    return privateKeyJwk;
+    return RSA_PRIVATE_KEY_MOCK;
 }
 
 // public key getter
 export const GetPublicKey = ()=>{
-    return publicKeyJwk;
+    return RSA_PUBLIC_KEY_MOCK;
+}
+
+export const signJwtToken = async (nonce: string)=>{
+
+    const alg = 'RS256'
+    const privateKey = await jose.importPKCS8(RSA_PRIVATE_KEY_MOCK, alg)
+
+    return await new jose.SignJWT({ 'claim': nonce })
+        .setProtectedHeader({ alg })
+        .setIssuedAt()
+        .setIssuer('pagopa-mock-id-provider')
+        .setAudience('pagopa-mock-user')
+        .setExpirationTime('1h')
+        .sign(privateKey)
 }
