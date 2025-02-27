@@ -1,26 +1,31 @@
- 
 import express from "express";
 import cookieParser from "cookie-parser";
+import { postOidcToken } from "./handlers/oidcTokenHandler";
+import { getOidcKeys } from "./handlers/oidcKeysHandler";
 import { initMock } from "./handlers/initMockHandler";
 
- 
 export const newExpressApp: () => Promise<Express.Application> = async () => {
-  const app = express();
-  const router = express.Router();
+  
+    const app = express();
 
-  app.use(express.json());
-  app.use(cookieParser());
+    // Middleware to parse JSON bodies
+    app.use(express.json());
 
-  app.use((req, res, next) => {
-    setTimeout(next, 1000);
-  });
+    // Middleware to parse URL-encoded form data (required for the OIDC token endpoint)
+    app.use(express.urlencoded({ extended: true }));
 
+    // Middleware to parse cookies
+    app.use(cookieParser());
 
-  app.get("/helloworld", (req, res) => {
-    res.send("Hello World");
-  });
+    // Simulating a delay of 1 second before processing the request
+    app.use((req, res, next) => {
+        setTimeout(next, 1000);
+    });
 
-  app.post("/initMock", initMock);
+    // Route handlers
+    app.post("/initMock", initMock);
+    app.post("/oidc/token", postOidcToken);
+    app.get("/oidc/keys", getOidcKeys);
 
-  return app;
+    return app;
 };
