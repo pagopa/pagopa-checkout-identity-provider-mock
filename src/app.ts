@@ -1,8 +1,8 @@
-/* eslint-disable sort-keys */
+ 
 import express from "express";
 import cookieParser from "cookie-parser";
 
-// eslint-disable-next-line max-lines-per-function
+ 
 export const newExpressApp: () => Promise<Express.Application> = async () => {
   const app = express();
   const router = express.Router();
