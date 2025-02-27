@@ -1,27 +1,45 @@
 const jose = require('jose');
 
-const privateKeyPem = `-----BEGIN RSA PRIVATE KEY-----
-MIICWwIBAAKBgHFM4vBEVmXQYiTZaZguzZC6f4UnB1fyCp6bIwRRZk+6O4UxMSKM
-56ADuDlowCE6DjF+Ta/gowJTDhSS2/ViMROdy71Kp4kfYOsrFMk5qjjqqS7ib5O/
-ZMwUmFOW5HYcJYUEIr5wLvIUHvGVJpajij9Z0wCz8WY2AexBqkanJf0vAgMBAAEC
-gYABxvb4VdoVFsOzWEWzwWgwEPzXFdmjo4RPIJfYBX7ZWU59tFvU8ujfNa+6Fs6M
-tuBqHlURoTBtZOgfon4Yx0WFx+W3Kvh7ar2jjbs9XdhB5krdFxWfRbLBbK+/xI/O
-RKvTl4GFtSViEkqQIUnTsIENuIf4zQRZBCKddvzK7hIrYQJBALSfK5k7ly4XZq0P
-g6hKacqOqWwVuVlFV7Nqwz+2VBtOnTieiou8rxXEALWx8BU/jk2pPQmOuQ4uRk+A
-1vP4oHsCQQCglWSygUPRJhUVusnHwX3OO4vzL23+BcYzEJBDXT3GiyK7TR1QQKav
-gS+qLK/vubOkJXK8B4Yv4zABiZTWw2ndAkEApdD+UIVha+H10+jLQENYTamcpepn
-pym+sqrPpnz3R75rHaCGpnRI9B1lXWiGdKtNM8SrkUuiXf9jcvdf3sggYwJAcbZY
-gC8ZHtmgxKpoiJNzyr5P8/z6Ho9oMnDgN1Onkxijl46b22BsqIsKfa73RwJxOyNp
-g8ywMOjn7a7HPu1R4QJAFSo2tTz3XhayO0fh7vQ0CHZfocOqoAQkKExmMdiHWcfn
-OLoCdHanxmtYvRoQG+kv3FQHwS7Awt+kb/zXJkT8Xg==
------END RSA PRIVATE KEY-----`;  
+const privateKeyPem = `-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCeyFQ2E/ekr8c9
+aAO2WQ3gTj3aU59OM6/rP73pXTD7b8TXUvJHFY7guipyufdNDJZ59EMk9zj2yrxX
++4eelSiJMXbdgrp2wQZIVK/pffcy7f8GobVLLz7YoLv/icbOqCOR3VeCoGt/4gtU
+eoSnr+lrx/fDlUvhOiTPPv381apVUFY0ZRi1OCWl9qT9czaQOGxQr5gsiduGmYn7
+5Nh+Mosnn7m1ZHd5OvTP4WbRt55bnDoSZNKgbyfWvNVawNBLpgYIf+IM8Ay5eeZS
+dVdRlA3zU4p/Bq9M7v/StuLWfOdc+vNmd0YBArCYBLbyhgVOHiaeNuTfwoNNd5b/
+JKKmAnb/AgMBAAECggEAGg/dqqaqXjCv7kdVXKfPXELbaiuRmV9of5+Nx3ERaiPV
+VlZ6B+rk8cP81anqio4HYOsT3kxp4DA0q+hQQVpQNfyVexRLENTr+BFWcmfHnGdu
+FaOTQ0z07s+rK+1sYV09wWJoS7uTCYGLxIj7nx6DnLpM06B8vPIzOoUnYUmc1LXB
+KrNgbYj8u3KIowKHmsJEF5uxoGurFrjDK+P+tEtr2NUYBj/4gZbneZNIdG+VHiSi
+Nc0Llh3B1n4uV4WlZGdV8iByk+4Zzfp7/n6BTKlfkLbNuCwadC6Aem9ULBnY6O1Y
+4JBpo49XA7qUR1UUVqAt1BcB7am+sXeoIFwZ9l9RQQKBgQDn6h94uNf2fQeD2KRY
+rwqD2IXFW+AU3rQhtMrQ4BujPLZgLeH4AhqKwDXKXWPHqmRpBvfh0D1+w41s3Qvb
+Tgl8B47bZnT0nR5a9zEz52qL0ILRE77H7eNiemeB+CMQFirnapZ2xAqySna4RDa0
+A7bWpQiXbjcJlkPfqs83WfbJ4QKBgQCvRds4D2F8nRBx/3z2K8RLSJhoyk1Ojz6V
+K33TiiS0plNmKHuN+BSoBV8TGK3ChIfLdyezpbq3g8BeVg8Vc1lS7EyDp5VNdwvw
+bddD618rIHNULlZVpYN+3FMfxQFPdtT0NhsolAYjyKx7AZJ1+JiQfA1vuJ1jIDdd
+8Sj60HQc3wKBgEYfXHS8L1CwbV1IXCkUhDFpfsk2BoNI815dtBWELdclvF9IgFLl
+D/F0PM97fXgZ5VJ8cOcud+mkZ1bLX5Jn/iYqgt+EE0kDWPJYW+A90NGFsohVWBJL
+s71LFZEO3ks26LIgYG54yGMwcMU2mvPDS72LGRXwlWOos80lcJJj+WMBAoGAFTM2
+494AZak9zvwfKkt677w1Kx+lICZ1ZGehTY/9BpjDp6yn3TEvlm8n49BtXATZxAOC
+mtkl74KRJxfztR2BpWUNkDMZ/Qe0Ov2eNwnmNfoz2O/N44gkkpiluUcD9I+kDHHq
+8QqOf4+LRUmYZIqQMZG/sk67Qr0n1UYRNd023jMCgYAtZIUf79TFV/7pQw9gaV4y
+tItrE2f2HTRjvSHc0d5MRonHMElcuDfVDbugv9LssZHr9DmhoDWZTjrrKpk+2BNe
+oeDg0NE6PzCPQc2zW69nxZqDkr/Kz7aT4nhyR601YsT7ayusPL6ZjMpAf+N+Tkyb
+PQ1ylOEPI0PBv1kYQWMfvg==
+-----END PRIVATE KEY-----`
 
 const publicKeyPem = `-----BEGIN PUBLIC KEY-----
-MIGeMA0GCSqGSIb3DQEBAQUAA4GMADCBiAKBgHFM4vBEVmXQYiTZaZguzZC6f4Un
-B1fyCp6bIwRRZk+6O4UxMSKM56ADuDlowCE6DjF+Ta/gowJTDhSS2/ViMROdy71K
-p4kfYOsrFMk5qjjqqS7ib5O/ZMwUmFOW5HYcJYUEIr5wLvIUHvGVJpajij9Z0wCz
-8WY2AexBqkanJf0vAgMBAAE=
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnshUNhP3pK/HPWgDtlkN
+4E492lOfTjOv6z+96V0w+2/E11LyRxWO4Loqcrn3TQyWefRDJPc49sq8V/uHnpUo
+iTF23YK6dsEGSFSv6X33Mu3/BqG1Sy8+2KC7/4nGzqgjkd1XgqBrf+ILVHqEp6/p
+a8f3w5VL4Tokzz79/NWqVVBWNGUYtTglpfak/XM2kDhsUK+YLInbhpmJ++TYfjKL
+J5+5tWR3eTr0z+Fm0beeW5w6EmTSoG8n1rzVWsDQS6YGCH/iDPAMuXnmUnVXUZQN
+81OKfwavTO7/0rbi1nznXPrzZndGAQKwmAS28oYFTh4mnjbk38KDTXeW/ySipgJ2
+/wIDAQAB
 -----END PUBLIC KEY-----`; 
+
+const v8_pub = ``;
 
 
 // these keys are needed to simulate the rsa signature used by the ID provider API
@@ -64,7 +82,7 @@ export const GetPublicKey = ()=>{
 export const signJwtToken = async (nonce: string)=>{
 
     const alg = 'RS256'
-    const privateKey = await jose.importPKCS8(RSA_PRIVATE_KEY_MOCK, alg)
+    const privateKey = await jose.importPKCS8(privateKeyPem, alg)
 
     return await new jose.SignJWT({ 'claim': nonce })
         .setProtectedHeader({ alg })
