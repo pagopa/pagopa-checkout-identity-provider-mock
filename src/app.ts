@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys */
-import * as express from "express";
-import * as cookieParser from "cookie-parser";
+import express from "express";
+import cookieParser from "cookie-parser";
 
 // eslint-disable-next-line max-lines-per-function
 export const newExpressApp: () => Promise<Express.Application> = async () => {
@@ -15,8 +15,8 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
   });
 
 
-  app.get("/test", ()=>{
-    return {}
+  app.get("/helloworld", (req, res) => {
+    res.send("Hello World");
   });
 
   return app;
