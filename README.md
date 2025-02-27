@@ -7,13 +7,12 @@ This project is a **mock API server** built with Node.js, designed to simulate i
 The following endpoints are supported:
 
 ### 1. `POST /initMock`
-Initialize the parameters later used by the auth flow.
-Optional: you may force the flow to fail using **forceFailure**
+Initialize the parameters later used by the auth flow. You may optionally force the flow to fail using **forceFailure**.
 
 #### Request Body:
 ```json
 {
-  "use_nonce": "nonce to be later used from the auth flow",
+  "use_nonce": "nonce-to-be-later-used-from-auth-flow",
   "forceFailure": false
 }
 ```
@@ -21,7 +20,7 @@ Optional: you may force the flow to fail using **forceFailure**
 #### Response:
 ```json
 {
-  "authCode": "Return an auth code to which is associated a JWT token inited with the nonce claim."
+  "authCode": "auth-code-returned-to-be-associated-with-jwt-token"
 }
 ```
 
@@ -45,7 +44,7 @@ Simulates the retrieval of public keys (often used for JWT signature verificatio
 ```
 
 ### 3. `POST /oidc/token`
-Simulates the process of exchanging authorization code or credentials for an access token. This endpoint supports the **Authorization Code** and **Client Credentials** grant types.
+Simulates the process of exchanging an authorization code or credentials for an access token. This endpoint supports the **Authorization Code** and **Client Credentials** grant types.
 
 #### Request Body:
 ```json
@@ -138,34 +137,64 @@ To initialize the mock identity provider, send a `POST` request to `http://local
 
 ```json
 {
-  "client_id": "your-client-id",
-  "client_secret": "your-client-secret",
-  "redirect_uri": "your-redirect-uri"
+  "use_nonce": "nonce-from-auth-flow",
+  "forceFailure": false
 }
+```
+
+#### cURL Example:
+```bash
+curl -X POST http://localhost:3000/initMock -H "Content-Type: application/json" -d '{
+  "use_nonce": "nonce-from-auth-flow",
+  "forceFailure": false
+}'
 ```
 
 ### 2. Test `/oidc/keys`
 To fetch the mock public keys, send a `GET` request to `http://localhost:3000/oidc/keys`.
 
+#### cURL Example:
+```bash
+curl http://localhost:3000/oidc/keys
+```
+
 ### 3. Test `/oidc/token`
 To simulate getting an access token, send a `POST` request to `http://localhost:3000/oidc/token` with the appropriate JSON body depending on your grant type.
 
+#### Example (Authorization Code Grant):
 ```json
 {
   "grant_type": "authorization_code",
-  "code": "your-auth-code",
-  "redirect_uri": "your-redirect-uri"
+  "code": "example-auth-code",
+  "redirect_uri": "https://example.com/callback"
 }
 ```
 
-OR
-
+#### Example (Client Credentials Grant):
 ```json
 {
   "grant_type": "client_credentials",
   "client_id": "your-client-id",
   "client_secret": "your-client-secret"
 }
+```
+
+#### cURL Example (Authorization Code Grant):
+```bash
+curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+  "grant_type": "authorization_code",
+  "code": "example-auth-code",
+  "redirect_uri": "https://example.com/callback"
+}'
+```
+
+#### cURL Example (Client Credentials Grant):
+```bash
+curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+  "grant_type": "client_credentials",
+  "client_id": "your-client-id",
+  "client_secret": "your-client-secret"
+}'
 ```
 
 ## Contributing
@@ -184,30 +213,35 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Example Usage
 
-Here's an example of how to test the mock server using `cURL`:
+Here are the cURL examples for each of the endpoints:
 
 1. **POST to `/initMock`**:
-
 ```bash
 curl -X POST http://localhost:3000/initMock -H "Content-Type: application/json" -d '{
-  "client_id": "test-client-id",
-  "client_secret": "test-client-secret",
-  "redirect_uri": "http://localhost/callback"
+  "use_nonce": "nonce-from-auth-flow",
+  "forceFailure": false
 }'
 ```
 
 2. **GET `/oidc/keys`**:
-
 ```bash
 curl http://localhost:3000/oidc/keys
 ```
 
-3. **POST to `/oidc/token`** (with `authorization_code` grant):
-
+3. **POST to `/oidc/token` (Authorization Code Grant)**:
 ```bash
 curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
   "grant_type": "authorization_code",
-  "code": "test-auth-code",
-  "redirect_uri": "http://localhost/callback"
+  "code": "example-auth-code",
+  "redirect_uri": "https://example.com/callback"
+}'
+```
+
+4. **POST to `/oidc/token` (Client Credentials Grant)**:
+```bash
+curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+  "grant_type": "client_credentials",
+  "client_id": "your-client-id",
+  "client_secret": "your-client-secret"
 }'
 ```
