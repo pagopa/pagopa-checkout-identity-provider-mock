@@ -83,8 +83,8 @@ Make sure you have the following installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/mock-identity-provider.git
-cd mock-identity-provider
+git clone https://github.com/pagopa/pagopa-checkout-identity-provider-mock.git
+cd pagopa-checkout-identity-provider-mock
 ```
 
 ### 2. Install Dependencies
