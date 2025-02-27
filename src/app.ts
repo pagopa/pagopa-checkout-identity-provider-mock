@@ -23,7 +23,11 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
 
   // Add the new APIPOST /initMock endpoint
   app.post("/initMock", (req, res) => {
-    res.json(initMock(req.body as InitMock));
+    try {
+      res.json(initMock(req.body as InitMock));
+    } catch (error) {
+      res.status(500).json({ error: "Forced API failure" });
+    }
   });
 
   return app;

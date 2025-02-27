@@ -1,6 +1,5 @@
 import crypto from "crypto";
-import { JWK } from 'jose';
-
+const JWK = require('jose');
 
 const privateKeyPem = `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgHFM4vBEVmXQYiTZaZguzZC6f4UnB1fyCp6bIwRRZk+6O4UxMSKM
@@ -32,8 +31,8 @@ const RSA_PRIVATE_KEY_MOCK = process.env.MOCK_PRIVATE_KEY || privateKeyPem;
 
 
 // Convert PEM keys into JWK format
-const privateKeyJwk = JWK.asKey(privateKeyPem, 'pem');
-const publicKeyJwk = JWK.asKey(publicKeyPem, 'pem');
+const privateKeyJwk = JWK.asKey(RSA_PUBLIC_KEY_MOCK, 'pem');
+const publicKeyJwk = JWK.asKey(RSA_PRIVATE_KEY_MOCK, 'pem');
 
 // Extract the public key components
 const publicKey = publicKeyJwk.toJSON(true); // Get the public key components
