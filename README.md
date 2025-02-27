@@ -138,9 +138,8 @@ The mock API server can be easily configured via environment variables in the `.
 
 ```env
 PORT=8090
-CLIENT_ID=example-client-id
-CLIENT_SECRET=example-client-secret
-REDIRECT_URI=https://example.com/callback
+MOCK_PUBLIC_KEY=public key
+MOCK_PRIVATE_KEY=private key
 ```
 
 ## Testing the Endpoints
