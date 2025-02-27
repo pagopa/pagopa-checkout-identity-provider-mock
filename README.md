@@ -7,9 +7,11 @@ This project is a **mock API server** built with Node.js, designed to simulate i
 The following endpoints are supported:
 
 ### 1. `POST /initMock`
+
 Initialize the parameters later used by the auth flow. You may optionally force the flow to fail using **forceFailure**.
 
 #### Request Body:
+
 ```json
 {
   "use_nonce": "nonce-to-be-later-used-from-auth-flow",
@@ -18,6 +20,7 @@ Initialize the parameters later used by the auth flow. You may optionally force 
 ```
 
 #### Response:
+
 ```json
 {
   "authCode": "auth-code-returned-to-be-associated-with-jwt-token"
@@ -25,9 +28,11 @@ Initialize the parameters later used by the auth flow. You may optionally force 
 ```
 
 ### 2. `GET /oidc/keys`
+
 Simulates the retrieval of public keys (often used for JWT signature verification).
 
 #### Response:
+
 ```json
 {
   "keys": [
@@ -44,9 +49,11 @@ Simulates the retrieval of public keys (often used for JWT signature verificatio
 ```
 
 ### 3. `POST /oidc/token`
+
 Simulates the process of exchanging an authorization code or credentials for an access token. This endpoint supports the **Authorization Code** and **Client Credentials** grant types.
 
 #### Request Body:
+
 ```json
 {
   "grant_type": "authorization_code",
@@ -56,6 +63,7 @@ Simulates the process of exchanging an authorization code or credentials for an 
 ```
 
 #### Response:
+
 ```json
 {
   "id_token": "example-id-token",
@@ -77,6 +85,7 @@ Simulates the process of exchanging an authorization code or credentials for an 
 ### Prerequisites
 
 Make sure you have the following installed:
+
 - **Node.js** (v16.x or higher)
 - **Yarn** (or npm)
 
@@ -90,11 +99,13 @@ cd pagopa-checkout-identity-provider-mock
 ### 2. Install Dependencies
 
 Using Yarn:
+
 ```bash
 yarn install
 ```
 
 Or using npm:
+
 ```bash
 npm install
 ```
@@ -104,16 +115,18 @@ npm install
 To start the mock API server, run:
 
 Using Yarn:
+
 ```bash
 yarn start
 ```
 
 Or using npm:
+
 ```bash
 npm start
 ```
 
-By default, the server will run on `http://localhost:3000`.
+By default, the server will run on `http://localhost:8090`.
 
 ### 4. API Documentation
 
@@ -124,7 +137,7 @@ Once the server is running, you can interact with the mock endpoints using tools
 The mock API server can be easily configured via environment variables in the `.env` file (you can create it from the `.env.example` file provided).
 
 ```env
-PORT=3000
+PORT=8090
 CLIENT_ID=example-client-id
 CLIENT_SECRET=example-client-secret
 REDIRECT_URI=https://example.com/callback
@@ -133,7 +146,8 @@ REDIRECT_URI=https://example.com/callback
 ## Testing the Endpoints
 
 ### 1. Test `/initMock`
-To initialize the mock identity provider, send a `POST` request to `http://localhost:3000/initMock` with the following JSON body:
+
+To initialize the mock identity provider, send a `POST` request to `http://localhost:8090/initMock` with the following JSON body:
 
 ```json
 {
@@ -143,25 +157,30 @@ To initialize the mock identity provider, send a `POST` request to `http://local
 ```
 
 #### cURL Example:
+
 ```bash
-curl -X POST http://localhost:3000/initMock -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8090/initMock -H "Content-Type: application/json" -d '{
   "use_nonce": "nonce-from-auth-flow",
   "forceFailure": false
 }'
 ```
 
 ### 2. Test `/oidc/keys`
-To fetch the mock public keys, send a `GET` request to `http://localhost:3000/oidc/keys`.
+
+To fetch the mock public keys, send a `GET` request to `http://localhost:8090/oidc/keys`.
 
 #### cURL Example:
+
 ```bash
-curl http://localhost:3000/oidc/keys
+curl http://localhost:8090/oidc/keys
 ```
 
 ### 3. Test `/oidc/token`
-To simulate getting an access token, send a `POST` request to `http://localhost:3000/oidc/token` with the appropriate JSON body depending on your grant type.
+
+To simulate getting an access token, send a `POST` request to `http://localhost:8090/oidc/token` with the appropriate JSON body depending on your grant type.
 
 #### Example (Authorization Code Grant):
+
 ```json
 {
   "grant_type": "authorization_code",
@@ -171,6 +190,7 @@ To simulate getting an access token, send a `POST` request to `http://localhost:
 ```
 
 #### Example (Client Credentials Grant):
+
 ```json
 {
   "grant_type": "client_credentials",
@@ -180,8 +200,9 @@ To simulate getting an access token, send a `POST` request to `http://localhost:
 ```
 
 #### cURL Example (Authorization Code Grant):
+
 ```bash
-curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
   "grant_type": "authorization_code",
   "code": "example-auth-code",
   "redirect_uri": "https://example.com/callback"
@@ -189,8 +210,9 @@ curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json
 ```
 
 #### cURL Example (Client Credentials Grant):
+
 ```bash
-curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
   "grant_type": "client_credentials",
   "client_id": "your-client-id",
   "client_secret": "your-client-secret"
@@ -216,21 +238,24 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Here are the cURL examples for each of the endpoints:
 
 1. **POST to `/initMock`**:
+
 ```bash
-curl -X POST http://localhost:3000/initMock -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8090/initMock -H "Content-Type: application/json" -d '{
   "use_nonce": "nonce-from-auth-flow",
   "forceFailure": false
 }'
 ```
 
 2. **GET `/oidc/keys`**:
+
 ```bash
-curl http://localhost:3000/oidc/keys
+curl http://localhost:8090/oidc/keys
 ```
 
 3. **POST to `/oidc/token`**:
+
 ```bash
-curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
+curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
   "grant_type": "authorization_code",
   "code": "example-auth-code",
   "redirect_uri": "https://example.com/callback"

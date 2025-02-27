@@ -4,7 +4,7 @@ import { logger } from "./logger";
 
 App.newExpressApp()
   .then(app => {
-    const listeningPorts = [8080, 8081];
+    const listeningPorts = [8090, 8091];
 
     logger.info("Starting pagopa-checkout-identity-provider-mock...");
 
