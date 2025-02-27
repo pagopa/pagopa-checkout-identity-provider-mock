@@ -14,7 +14,7 @@ Optional: you may force the flow to fail using **forceFailure**
 ```json
 {
   "use_nonce": "nonce to be later used from the auth flow",
-  "forceFailure": false, // true to force the auth flow to fail
+  "forceFailure": false
 }
 ```
 
