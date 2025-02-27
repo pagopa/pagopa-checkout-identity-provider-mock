@@ -184,22 +184,6 @@ To simulate getting an access token, send a `POST` request to `http://localhost:
 }
 ```
 
-
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to this project, please fork the repository and create a pull request. Make sure to follow these guidelines:
-
-- Ensure the code is well-documented.
-- Write tests for any new functionality.
-- Follow standard coding conventions.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## Example Usage
 
 Here are the cURL examples for each of the endpoints:
