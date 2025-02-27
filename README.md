@@ -228,20 +228,11 @@ curl -X POST http://localhost:3000/initMock -H "Content-Type: application/json" 
 curl http://localhost:3000/oidc/keys
 ```
 
-3. **POST to `/oidc/token` (Authorization Code Grant)**:
+3. **POST to `/oidc/token`**:
 ```bash
 curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
   "grant_type": "authorization_code",
   "code": "example-auth-code",
   "redirect_uri": "https://example.com/callback"
-}'
-```
-
-4. **POST to `/oidc/token` (Client Credentials Grant)**:
-```bash
-curl -X POST http://localhost:3000/oidc/token -H "Content-Type: application/json" -d '{
-  "grant_type": "client_credentials",
-  "client_id": "your-client-id",
-  "client_secret": "your-client-secret"
 }'
 ```
