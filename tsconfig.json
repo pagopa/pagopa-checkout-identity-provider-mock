@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2022",
+    "target": "ESNext",
     "rootDir": "src",
     "outDir": "dist",
-    "module": "NodeNext",  // Use "NodeNext" for Node.js 16 and later
+    "module": "NodeNext", 
     "moduleResolution": "NodeNext",
     "strict": true,
     "noImplicitAny": true,

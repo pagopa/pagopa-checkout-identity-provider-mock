@@ -1,6 +1,7 @@
  
 import express from "express";
 import cookieParser from "cookie-parser";
+import { initMock } from "./handlers/initMockHandler";
 
  
 export const newExpressApp: () => Promise<Express.Application> = async () => {
@@ -18,6 +19,8 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
   app.get("/helloworld", (req, res) => {
     res.send("Hello World");
   });
+
+  app.post("/initMock", initMock);
 
   return app;
 };
