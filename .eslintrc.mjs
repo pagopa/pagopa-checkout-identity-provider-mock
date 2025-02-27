@@ -4,10 +4,6 @@ export default [
     languageOptions: {
      // Directly reference the parser (imported @typescript-eslint/parser)
      parser: parser,
-
-     parserOptions: {
-            sourceType: 'module',  // Enable ES module syntax
-        },
     },
     ignores: [
       'node_modules',
