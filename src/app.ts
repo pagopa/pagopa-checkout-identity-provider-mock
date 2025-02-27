@@ -1,8 +1,7 @@
  
 import express from "express";
 import cookieParser from "cookie-parser";
-import { initMock } from "./handlers/oneIdentity";
-import { InitMock } from "./models/InitMock";
+import { initMock } from "./handlers/initMockHandler";
 
  
 export const newExpressApp: () => Promise<Express.Application> = async () => {
@@ -22,13 +21,7 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
   });
 
   // Add the new APIPOST /initMock endpoint
-  app.post("/initMock", (req, res) => {
-    try {
-      res.json(initMock(req.body as InitMock));
-    } catch (error) {
-      res.status(500).json({ error: "Forced API failure" });
-    }
-  });
+  app.post("/initMock",initMock);
 
   return app;
 };
