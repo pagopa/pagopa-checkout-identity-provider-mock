@@ -50,15 +50,13 @@ Simulates the retrieval of public keys (often used for JWT signature verificatio
 
 ### 3. `POST /oidc/token`
 
-Simulates the process of exchanging an authorization code or credentials for an access token. This endpoint supports the **Authorization Code** and **Client Credentials** grant types.
+Simulates the process of exchanging an authorization code or credentials for an access token.
 
 #### Request Body:
 
 ```json
 {
-  "grant_type": "authorization_code",
-  "code": "example-auth-code",
-  "redirect_uri": "https://example.com/callback"
+  "code": "authorization code",
 }
 ```
 
@@ -182,41 +180,11 @@ To simulate getting an access token, send a `POST` request to `http://localhost:
 
 ```json
 {
-  "grant_type": "authorization_code",
-  "code": "example-auth-code",
-  "redirect_uri": "https://example.com/callback"
+  "code": "authorization code",
 }
 ```
 
-#### Example (Client Credentials Grant):
 
-```json
-{
-  "grant_type": "client_credentials",
-  "client_id": "your-client-id",
-  "client_secret": "your-client-secret"
-}
-```
-
-#### cURL Example (Authorization Code Grant):
-
-```bash
-curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
-  "grant_type": "authorization_code",
-  "code": "example-auth-code",
-  "redirect_uri": "https://example.com/callback"
-}'
-```
-
-#### cURL Example (Client Credentials Grant):
-
-```bash
-curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
-  "grant_type": "client_credentials",
-  "client_id": "your-client-id",
-  "client_secret": "your-client-secret"
-}'
-```
 
 ## Contributing
 
