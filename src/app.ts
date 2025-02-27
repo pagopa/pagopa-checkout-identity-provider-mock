@@ -1,6 +1,8 @@
  
 import express from "express";
 import cookieParser from "cookie-parser";
+import { initMock } from "./handlers/oneIdentity";
+import { InitMock } from "./models/InitMock";
 
  
 export const newExpressApp: () => Promise<Express.Application> = async () => {
@@ -17,6 +19,11 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
 
   app.get("/helloworld", (req, res) => {
     res.send("Hello World");
+  });
+
+  // Add the new APIPOST /initMock endpoint
+  app.post("/initMock", (req, res) => {
+    res.json(initMock(req.body as InitMock));
   });
 
   return app;
