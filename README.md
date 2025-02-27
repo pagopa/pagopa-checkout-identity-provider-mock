@@ -1,0 +1,1 @@
+# pagopa-checkout-identity-provider-mock
