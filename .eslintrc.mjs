@@ -4,14 +4,10 @@ export default [
     languageOptions: {
      // Directly reference the parser (imported @typescript-eslint/parser)
      parser: parser,
+
      parserOptions: {
-        project: './tsconfig.json',
-        sourceType: 'module',
-      },
-      globals: {
-        es6: true, // Global ES6 environment
-        node: true, // Global Node.js environment
-      },
+            sourceType: 'module',  // Enable ES module syntax
+        },
     },
     ignores: [
       'node_modules',

@@ -1,11 +1,23 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+/* eslint-disable sort-keys */
+import * as express from "express";
+import * as cookieParser from "cookie-parser";
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
+// eslint-disable-next-line max-lines-per-function
+export const newExpressApp: () => Promise<Express.Application> = async () => {
+  const app = express();
+  const router = express.Router();
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-});
+  app.use(express.json());
+  app.use(cookieParser());
+
+  app.use((req, res, next) => {
+    setTimeout(next, 1000);
+  });
+
+
+  app.get("/test", ()=>{
+    return {}
+  });
+
+  return app;
+};
