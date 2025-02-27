@@ -100,10 +100,11 @@ const RSA_PUBLIC_KEY_MOCK = process.env.MOCK_PUBLIC_KEY || publicKeyPem;
 const RSA_PRIVATE_KEY_MOCK = process.env.MOCK_PRIVATE_KEY || privateKeyPem;
 
 
-export const getJwkPayload = ()=>{
+export const getJwkPayload = async ()=>{
 
     // Extract the public key components
-    const publicKey = jose.exportJWK(RSA_PUBLIC_KEY_MOCK);
+    const publicKey = await jose.importSPKI(RSA_PUBLIC_KEY_MOCK, "RS256");
+    const publicKeyJwk = await jose.exportJWK(publicKey);
 
     // Construct the payload object
     const jwkPayload = {
@@ -113,8 +114,8 @@ export const getJwkPayload = ()=>{
             kid: "d47b2419-c8b2-4e89-8b99-2ad11756cf72", 
             use: "sig",
             alg: "RS256",
-            n: publicKey.n,
-            e: publicKey.e, 
+            n: publicKeyJwk.n,
+            e: publicKeyJwk.e, 
         }
         ]
     };

@@ -1,13 +1,10 @@
  
 import express from "express";
 import cookieParser from "cookie-parser";
-import { postOidcToken } from "./handlers/oidc-token-handler";
-import { get } from "http";
-import { getOidcKeys } from "./handlers/oidc-keys-handler";
+import { postOidcToken } from "./handlers/oidcTokenHandler";
+import { getOidcKeys } from "./handlers/oidcKeysHandler";
 import { initMock } from "./handlers/initMockHandler";
 
-
- 
 export const newExpressApp: () => Promise<Express.Application> = async () => {
   
     const app = express();
