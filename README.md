@@ -206,9 +206,7 @@ curl http://localhost:8090/oidc/keys
 3. **POST to `/oidc/token`**:
 
 ```bash
-curl -X POST http://localhost:8090/oidc/token -H "Content-Type: application/json" -d '{
-  "grant_type": "authorization_code",
-  "code": "example-auth-code",
-  "redirect_uri": "https://example.com/callback"
-}'
+curl -X POST http://localhost:8090/oidc/token \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "grant_type=authorization_code&code=example-auth-code&redirect_uri=https://example.com/callback"
 ```
