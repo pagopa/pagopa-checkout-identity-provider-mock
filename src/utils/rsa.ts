@@ -138,11 +138,16 @@ export const signJwtToken = async (nonce: string)=>{
     const alg = 'RS256'
     const privateKey = await jose.importPKCS8(privateKeyPem, alg)
 
-    return await new jose.SignJWT({ 'claim': nonce })
-        .setProtectedHeader({ alg })
-        .setIssuedAt()
-        .setIssuer('pagopa-mock-id-provider')
-        .setAudience('pagopa-mock-user')
-        .setExpirationTime('1h')
-        .sign(privateKey)
+    return await new jose.SignJWT({ 
+        'nonce': nonce, 
+        name: "name",
+        familyName: "familyName",
+        "fiscalNumber": "fiscalNumber"
+     })
+    .setProtectedHeader({ alg })
+    .setIssuedAt()
+    .setIssuer('pagopa-mock-id-provider')
+    .setAudience('pagopa-mock-user')
+    .setExpirationTime('1h')
+    .sign(privateKey)
 }
