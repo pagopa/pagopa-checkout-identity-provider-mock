@@ -84,7 +84,7 @@ Simulates the process of exchanging an authorization code or credentials for an 
 
 Make sure you have the following installed:
 
-- **Node.js** (v16.x or higher)
+- **Node.js** (v22.x or higher)
 - **Yarn** (or npm)
 
 ### 1. Clone the repository
