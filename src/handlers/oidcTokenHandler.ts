@@ -18,7 +18,7 @@ export const postOidcToken: RequestHandler = async (req, res) => {
             expires_in: 3600,
         });
     }else{
-        res.status(409).json({ error: "Each code can only be used once" });
+        res.status(500).json({ error: "Each code can only be used once" });
     }
 };
   
