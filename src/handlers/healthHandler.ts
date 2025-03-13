@@ -1,9 +1,11 @@
 import { RequestHandler } from "express";
 
 export const liveness: RequestHandler = async (_, res) => {
-    res.status(200).send("Liveness check OK");
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send({"Liveness": "OK"});
 };
   
 export const readiness: RequestHandler = async (_, res) => {
-    res.status(200).send("Readiness check OK");
+    res.setHeader("Content-Type", "application/json");
+    res.status(200).send({"Readiness": "OK"});
 };
