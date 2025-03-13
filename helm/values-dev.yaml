@@ -11,15 +11,15 @@ microservice-chart:
     httpGet:
       path: /health/liveness
       port: 8090
-    initialDelaySeconds: 30
+    initialDelaySeconds: 60
     failureThreshold: 6
-    periodSeconds: 10
+    periodSeconds: 90
   readinessProbe:
     handlerType: httpGet
     httpGet:
       path: /health/readiness
       port: 8090
-    initialDelaySeconds: 30
+    initialDelaySeconds: 60
     failureThreshold: 6
     periodSeconds: 10
   deployment:
