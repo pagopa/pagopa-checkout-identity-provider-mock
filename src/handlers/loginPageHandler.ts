@@ -1,4 +1,5 @@
 import { RequestHandler } from "express";
+import escapeHtml from 'escape-html';
 import { setInMemoryState } from "../utils/inMemoryState";
 import { signJwtToken } from "../utils/rsa";
 import { generateAuthCode } from "./initMockHandler";
@@ -19,7 +20,7 @@ export const getLoginPage: RequestHandler = async (req, res) => {
         const randomAuthCode = generateAuthCode();
         setInMemoryState(randomAuthCode, jwt);
         
-        const checkout_redirect_uri =`${redirect_uri}?code=${randomAuthCode}&state=${state}`;
+        const checkout_redirect_uri =`${escapeHtml(redirect_uri as string)}?code=${randomAuthCode}&state=${state}`;
     
         res.setHeader("Content-Type", "text/html");
         res.status(200).send(`

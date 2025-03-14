@@ -19,7 +19,8 @@
     "rimraf": "^6.0.1",
     "ts": "^0.2.2",
     "tsc": "^2.0.4",
-    "winston": "^3.17.0"
+    "winston": "^3.17.0",
+    "escape-html": "^1.0.3"
   },
   "scripts": {
     "start": "export $(grep -v '^#' .env | xargs) && node dist/index.js",
