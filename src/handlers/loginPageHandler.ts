@@ -63,7 +63,7 @@ export const getLoginPage: RequestHandler = async (req, res) => {
                 <div class="container">
                 <h1>Simulazione di una login con SPID</h1>
                 <p>A breve sarai reindirizzato su checkout.</p>
-                <div class="redirect">Se non vieni reindirizzato automaticamente, <a href="/checkout">clicca qui</a>.</div>
+                <div class="redirect">Se non vieni reindirizzato automaticamente, <a href="${checkout_redirect_uri}">clicca qui</a>.</div>
                 </div>
                 <script>
                 setTimeout(function() {

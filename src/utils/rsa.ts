@@ -140,8 +140,8 @@ export const signJwtToken = async (nonce: string)=>{
 
     return await new jose.SignJWT({ 
         'nonce': nonce, 
-        name: "Scusa",
-        familyName: "Marco",
+        name: "NomeTest",
+        familyName: "CognomeTest",
         "fiscalNumber": "fiscalNumber"
      })
     .setProtectedHeader({ alg })
