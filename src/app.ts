@@ -4,6 +4,7 @@ import { postOidcToken } from "./handlers/oidcTokenHandler";
 import { getOidcKeys } from "./handlers/oidcKeysHandler";
 import { initMock } from "./handlers/initMockHandler";
 import { liveness, readiness } from "./handlers/healthHandler";
+import { getLoginPage } from "./handlers/loginPageHandler";
 
 export const newExpressApp: () => Promise<Express.Application> = async () => {
   
@@ -29,6 +30,8 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
     app.get("/oidc/keys", getOidcKeys);
     app.get("/health/liveness", liveness);
     app.get("/health/readiness", readiness);
+    app.get("/login/spid", getLoginPage);
+
     return app;
 };
 
