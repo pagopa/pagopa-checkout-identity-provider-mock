@@ -30,7 +30,7 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
     app.get("/oidc/keys", getOidcKeys);
     app.get("/health/liveness", liveness);
     app.get("/health/readiness", readiness);
-    app.get("/login/spid", getLoginPage);
+    app.get("/login", getLoginPage);
 
     return app;
 };
