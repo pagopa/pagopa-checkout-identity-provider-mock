@@ -7,9 +7,9 @@ import { generateAuthCode } from "./initMockHandler";
 export const getLoginPage: RequestHandler = async (req, res) => {
 
 
-    const { nonce, redirect_uri } = req.query;
+    const { nonce, redirect_uri, state } = req.query;
 
-    if (!nonce || !redirect_uri) {
+    if (!nonce || !redirect_uri || !state) {
 
         res.status(400).send("Missing nonce or redirect_uri");
 
@@ -19,7 +19,7 @@ export const getLoginPage: RequestHandler = async (req, res) => {
         const randomAuthCode = generateAuthCode();
         setInMemoryState(randomAuthCode, jwt);
         
-        const checkout_redirect_uri =`${redirect_uri}?code=${randomAuthCode}&state=${nonce}`;
+        const checkout_redirect_uri =`${redirect_uri}?code=${randomAuthCode}&state=${state}`;
     
         res.setHeader("Content-Type", "text/html");
         res.status(200).send(`
