@@ -118,6 +118,8 @@ stages:
     jobs:
       - deployment: "deploy"
         environment: "UAT"
+        pool:
+          name: pagopa-uat-linux
         strategy:
           runOnce:
             deploy:
