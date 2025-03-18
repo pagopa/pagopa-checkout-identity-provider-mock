@@ -48,6 +48,7 @@ stages:
 # --- START Deploy DEV --- #
   - stage: "Build_for_DEV"
     displayName: "Build for DEV"
+    dependsOn: []
     condition: and(succeeded(), not(${{ parameters.SKIP_BUILD }}), eq(${{parameters.DEV_DEPLOY}}, true))
     jobs:
       - job: Build_docker
@@ -96,6 +97,7 @@ stages:
   # --- START Deploy UAT --- #
   - stage: "Build_for_UAT"
     displayName: "Build for UAT"
+    dependsOn: []
     condition: and(not(${{ parameters.SKIP_BUILD }}), eq(${{parameters.UAT_DEPLOY}}, true))
     jobs:
       - job: Build_docker
@@ -116,6 +118,8 @@ stages:
     jobs:
       - deployment: "deploy"
         environment: "UAT"
+        pool:
+          name: pagopa-uat-linux
         strategy:
           runOnce:
             deploy:
