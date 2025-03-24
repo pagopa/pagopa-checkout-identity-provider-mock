@@ -50,11 +50,11 @@ microservice-chart:
         - all
   resources:
     requests:
-      memory: "256Mi"
-      cpu: "150m"
+      memory: "512Mi"
+      cpu: "300m"
     limits:
-      memory: "256Mi"
-      cpu: "150m"
+      memory: "512Mi"
+      cpu: "300m"
   envConfig:
     DEFAULT_LOGGING_LEVEL: "info"
   envSecret:
