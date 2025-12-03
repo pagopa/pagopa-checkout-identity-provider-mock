@@ -142,7 +142,7 @@ export const signJwtToken = async (nonce: string)=>{
         'nonce': nonce, 
         name: "NomeTest",
         familyName: "CognomeTest",
-        "fiscalNumber": "fiscalNumber"
+        "fiscalNumber": "RSSMRA00L05F511A"
      })
     .setProtectedHeader({ alg })
     .setIssuedAt()
