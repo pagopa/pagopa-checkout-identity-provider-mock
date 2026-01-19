@@ -19,6 +19,11 @@ export const newExpressApp: () => Promise<Express.Application> = async () => {
     // Middleware to parse cookies
     app.use(cookieParser());
 
+    // Simulating a delay of 300ms before processing the request
+    app.use((req, res, next) => {
+        setTimeout(next, 300);
+    });
+
     // Route handlers
     app.post("/initMock", initMock);
     app.post("/oidc/token", postOidcToken);
