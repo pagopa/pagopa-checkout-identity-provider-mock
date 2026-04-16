@@ -2,7 +2,7 @@ FROM node:22.13.1-slim@sha256:83fdfa2a4de32d7f8d79829ea259bd6a4821f8b2d123204ac4
 
 WORKDIR /usr/src/app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["package.json", "yarn.json*", "./"]
 
 RUN yarn install
 
