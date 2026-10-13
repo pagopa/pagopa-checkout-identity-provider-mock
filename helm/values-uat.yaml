@@ -73,7 +73,6 @@ microservice-chart:
                 values:
                   - user
   secretProviderClass:
-    secretProviderClass:
       create: false
   azure:
     workloadIdentityClientId: "61f9e998-9676-42fa-9435-554586259190"
