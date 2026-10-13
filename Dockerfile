@@ -2,9 +2,9 @@ FROM node:22.13.1-slim@sha256:83fdfa2a4de32d7f8d79829ea259bd6a4821f8b2d123204ac4
 
 WORKDIR /usr/src/app
 
-COPY ["package.json", "yarn.json*", "./"]
+COPY ["package.json", "yarn.lock", "./"]
 
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
